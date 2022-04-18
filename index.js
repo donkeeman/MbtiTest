@@ -83,6 +83,23 @@ const q = {
         "B": "P"
     }
 }
+const result = {
+    "ISTJ": {
+        "animal": "하마",
+        "explain": "하마 설명",
+        "img": "./image/lion.jpg"
+    },
+    "ENTP": {
+        "animal": "멋쟁이 사자",
+        "explain": "멋쟁이 사자 설명",
+        "img": "./image/lion.jpg"
+    },
+    "ENTJ": {
+        "animal": "호랑이",
+        "explain": "호랑이 설명",
+        "img": "./image/lion.jpg"
+    }
+}
 
 function start(){
     $(".start").hide();
@@ -94,11 +111,21 @@ function next(){
     if(num == 13){
         $(".question").hide();
         $(".result").show();
+        let mbti = "";
+        mbti += $("#EI").val()<2 ? "I" : "E";
+        mbti += $("#SN").val()<2 ? "N" : "S";
+        mbti += $("#TF").val()<2 ? "f" : "T";
+        mbti += $("#JP").val()<2 ? "P" : "J";
+        $("#img").attr("src", result[mbti]["img"]);
+        $("#animal").html(result[mbti]["animal"]);
+        $("#explain").html(result[mbti]["explain"]);
     }
-    $(".progress-bar").attr("style", "width: calc(100/12*"+num+"%)");
-    $("#title").html(q[num]["title"]);
-    $("#type").val(q[num]["type"]);
-    $("#A").html(q[num]["A"]);
-    $("#B").html(q[num]["B"]);
-    num++;
+    else{
+        $(".progress-bar").attr("style", "width: calc(100/12*"+num+"%)");
+        $("#title").html(q[num]["title"]);
+        $("#type").val(q[num]["type"]);
+        $("#A").html(q[num]["A"]);
+        $("#B").html(q[num]["B"]);
+        num++;
+    }
 }
